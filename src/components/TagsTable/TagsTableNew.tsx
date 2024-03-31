@@ -19,6 +19,10 @@ import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
 import { useModalManager } from '../../hooks/useModalManager';
 import { CollectiveModal } from '../CollectiveModal/CollectiveModal';
 import { ITagData, InfoModal } from '../InfoModal/InfoModal';
+import { TableFooter } from '@mui/material';
+import { useState } from 'react';
+import { visuallyHidden } from '@mui/utils'
+import { Primary, Secondary } from '../../stories/Button.stories';
 
 export interface IData extends ITagData {
 	collectives?: Array<ICollective>
@@ -38,9 +42,24 @@ interface IExternalLink {
 	link: string
 }
 
+interface ITagTableHeaderProps {
+	orderBy: keyof IData,
+	orderDirection: SortDir,
+	onSortChange: (by: keyof IData, dir: SortDir) => void,
+}
 
+const resolveDirection = (orderBy: keyof IData, label: keyof IData, dir: SortDir) => {
+	if (orderBy === label) {
+		return dir === 'asc' ? 'desc' : 'asc'
+	}
+	return 'asc'
+}
 
-const TagTableHeader = () => {
+const TagTableHeader = ({
+	orderBy,
+	orderDirection,
+	onSortChange
+}: ITagTableHeaderProps) => {
 
 
 	return (
@@ -55,13 +74,31 @@ const TagTableHeader = () => {
 					align='left'
 					padding='none'
 				>
-					Name
+					<TableSortLabel
+						active={orderBy === 'name'}
+						direction={orderBy === 'name' ? orderDirection : 'asc'}
+						onClick={() => onSortChange('name', resolveDirection(orderBy, 'name', orderDirection))}
+					>
+						Name
+						<Box component="span" sx={visuallyHidden}>
+							{'sorted ascending'}
+						</Box>
+					</TableSortLabel>
 				</TableCell>
 				<TableCell
 					align='left'
 					padding='normal'
 				>
-					Count
+					<TableSortLabel
+						active={orderBy === 'count'}
+						direction={orderBy === 'count' ? orderDirection : 'asc'}
+						onClick={() => onSortChange('count', resolveDirection(orderBy, 'count', orderDirection))}
+					>
+						Count
+						<Box component="span" sx={visuallyHidden}>
+							{'sorted ascending'}
+						</Box>
+					</TableSortLabel>
 				</TableCell>
 				<TableCell
 					align='right'
@@ -107,7 +144,7 @@ const TagTableRow = ({
 		key={tagData.name}
 		>
 		<TableCell padding='checkbox'>
-			<i className={`devicon-${tagData.name}-plain`} style={{ fontSize: 30, color: 'black'}} ></i>
+			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 30 }} color={'primary'}></Typography>
 		</TableCell>
 		<TableCell
 			component="th"
@@ -115,6 +152,7 @@ const TagTableRow = ({
 			scope="row"
 			padding="none"
 			>
+				
 			{tagData.name}
 		</TableCell>
 		<TableCell align="left">{tagData.count}</TableCell>
@@ -136,27 +174,64 @@ const TagTableRow = ({
 	)
 }
 
+type SortDir = 'asc' | 'desc'
+
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+interface ISortDetails {
+	by: keyof IData,
+	dir: SortDir
+}
+
 
 export const TagTable = () => {
+	const [currentPage, setCurrentPage] = useState<number>(0)
+	const [sortDetails, setSortDetails] = useState<ISortDetails>({by: 'count', dir: 'desc'})
 
+
+
+	const handlePageChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, page: number) => {
+		//console.log(page)
+		setCurrentPage(page)
+	}
+
+	const handleSortChange = (by: keyof IData, dir: SortDir) => {
+		setSortDetails({by, dir})
+	}
 
 	return(
-    <Box sx={{ width: '100%', height: '100%' }}>
+    <Box sx={{ width: '100%', height: '100%' }} >
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableContainer sx= {{ maxHeight: 300}}>
+        <TableContainer sx= {{ maxHeight: 300}} color={'secondary'}>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
             size={'small'}
 						stickyHeader
           >
-            <TagTableHeader/>
+            <TagTableHeader orderBy={sortDetails.by} orderDirection={sortDetails.dir} onSortChange={handleSortChange}/>
             <TableBody>
               {mockTagData.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
             </TableBody>
           </Table>
-        </TableContainer>
 
+        </TableContainer>
+						<TablePagination
+							count={-1}
+							page={currentPage}
+							rowsPerPage={10}
+							onPageChange={handlePageChange}
+							component={'div'}
+							rowsPerPageOptions={[10]}
+						/>
       </Paper>
     </Box>
 	)
