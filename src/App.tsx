@@ -5,6 +5,7 @@ import './App.css'
 import { ThemeSwitch } from './components/ThemeSwitch'
 import { TagTable } from './components/TagsTable/TagsTableNew'
 import { useModalManager } from './hooks/useModalManager'
+import { FilterInput } from './components/FilterInput/FilterInput'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 		</div>
 
 		<div style={{width: '60vw', height: '80%'}}>
+			<FilterInput />
 			<TagTable />
 		</div>
 		{currentModal && currentModal}
