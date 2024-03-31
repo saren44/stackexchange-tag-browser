@@ -73,6 +73,7 @@ const TagTableHeader = ({
 				<TableCell
 					align='left'
 					padding='none'
+					size='small'
 				>
 					<TableSortLabel
 						active={orderBy === 'name'}
@@ -88,6 +89,7 @@ const TagTableHeader = ({
 				<TableCell
 					align='left'
 					padding='normal'
+					size='small'
 				>
 					<TableSortLabel
 						active={orderBy === 'count'}
@@ -144,19 +146,20 @@ const TagTableRow = ({
 		key={tagData.name}
 		>
 		<TableCell padding='checkbox'>
-			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 30 }} color={'primary'}></Typography>
+			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 0 }} color={'primary'}></Typography>
 		</TableCell>
 		<TableCell
 			component="th"
 			id={`enhanced-table-checkbox-${tagData.name}`}
 			scope="row"
 			padding="none"
+			align='left'
 			>
 				
 			{tagData.name}
 		</TableCell>
-		<TableCell align="left">{tagData.count}</TableCell>
-		<TableCell align="right">
+		<TableCell align="left" padding='none'>{tagData.count}</TableCell>
+		<TableCell align="right" size='medium'>
 			{
 				tagData.collectives && (
 					<IconButton onClick={handleOpenCollectiveModal}>
@@ -209,16 +212,16 @@ export const TagTable = () => {
 
 	return(
     <Box sx={{ width: '100%', height: '100%' }} >
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableContainer sx= {{ maxHeight: 300}} color={'secondary'}>
+      <Paper sx={{ width: '100%', mb: 2, height: '100%' }}>
+        <TableContainer sx= {{ maxHeight: '75vh', overflowY: 'auto' }} color={'secondary'}>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ minWidth: 300, }}
             aria-labelledby="tableTitle"
             size={'small'}
 						stickyHeader
           >
             <TagTableHeader orderBy={sortDetails.by} orderDirection={sortDetails.dir} onSortChange={handleSortChange}/>
-            <TableBody>
+            <TableBody sx= {{ overflowX: 'hidden' }}>
               {mockTagData.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
             </TableBody>
           </Table>
@@ -231,6 +234,7 @@ export const TagTable = () => {
 							onPageChange={handlePageChange}
 							component={'div'}
 							rowsPerPageOptions={[10]}
+							sx={{ maxHeight: '10vh'}}
 						/>
       </Paper>
     </Box>
