@@ -52,6 +52,7 @@ function App() {
 	}
 
 	useEffect(() => {
+		
     window.addEventListener('resize', handleWindowSizeChange);
     return () => {
         window.removeEventListener('resize', handleWindowSizeChange);
@@ -68,28 +69,27 @@ function App() {
 			isMobile ?
 			(
 			<>
-				<div style={{height: '15vh'}}>
+				<div style={{maxHeight: '15vh', marginTop: '1vh'}}>
 					<FilterInput />
 					<div style={{position: 'absolute', top: 30, right: 30}}>
 						<ThemeSwitch />
 					</div>
 					
 				</div>
-				<div style={{width: '100vw', overflowX: 'hidden'}}>
+				<div style={{width: '100vw', overflowX: 'hidden', overflowY: 'hidden'}}>
 					<TagTable />
 				</div>
 				{currentModal && currentModal}
 			</>
 			) : (
 				<>
-				<div style={{height: '15vh'}}>
+				<div style={{height: '10vh', marginTop: '1vh'}}>
 					<FilterInput />
 					<div style={{position: 'absolute', top: 30, right: 30}}>
 						<ThemeSwitch />
 					</div>
 				</div>
-				<div style={{width: '60vw', minWidth: 768, maxHeight: '85vh'}}>
-
+				<div style={{width: '60%', minWidth: 768, maxHeight: '85vh'}}>
 					<TagTable />
 				</div>
 				{currentModal && currentModal}

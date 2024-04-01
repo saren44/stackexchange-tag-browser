@@ -146,7 +146,7 @@ const TagTableRow = ({
 		key={tagData.name}
 		>
 		<TableCell padding='checkbox'>
-			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 0 }} color={'primary'}></Typography>
+			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 24 }} color={'primary'}></Typography>
 		</TableCell>
 		<TableCell
 			component="th"
@@ -160,18 +160,21 @@ const TagTableRow = ({
 		</TableCell>
 		<TableCell align="left" padding='none'>{tagData.count}</TableCell>
 		<TableCell align="right" size='medium'>
-			{
-				tagData.collectives && (
-					<IconButton onClick={handleOpenCollectiveModal}>
-					<Groups />
+			<Box>
+				{
+					tagData.collectives && (
+						<IconButton onClick={handleOpenCollectiveModal}>
+						<Groups />
+					</IconButton>
+					)}
+				<IconButton onClick={handleOpenInfoModal}>
+					<Info />
 				</IconButton>
-				)}
-			<IconButton onClick={handleOpenInfoModal}>
-				<Info />
-			</IconButton>
-			<IconButton onClick={handleOpenLink}>
-				<OpenInNewRounded />
-			</IconButton>
+				<IconButton onClick={handleOpenLink}>
+					<OpenInNewRounded />
+				</IconButton>
+			</Box>
+
 		</TableCell>
 	</TableRow>
 	)
