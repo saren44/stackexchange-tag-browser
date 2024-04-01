@@ -25,6 +25,7 @@ export const FilterInput = () => {
 	}
 
 
+
 	return (
 		<Box
 			display={'flex'}
@@ -34,6 +35,7 @@ export const FilterInput = () => {
 			<TextField 
 			onKeyDown={handleKeyPress}
 			inputRef={inputRef} label={"search"} size='small'
+			helperText='enter name query'
 			InputProps={{
 				endAdornment: 
 				<InputAdornment position="end">

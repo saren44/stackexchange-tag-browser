@@ -216,7 +216,7 @@ export const TagTable = () => {
 	return(
     <Box sx={{ width: '100%', height: '100%' }} >
       <Paper sx={{ width: '100%', mb: 2, height: '100%' }}>
-        <TableContainer sx= {{ maxHeight: '75vh', overflowY: 'auto' }} color={'secondary'}>
+        <TableContainer color={'secondary'}>
           <Table
             sx={{ minWidth: 300, }}
             aria-labelledby="tableTitle"
@@ -230,15 +230,6 @@ export const TagTable = () => {
           </Table>
 
         </TableContainer>
-						<TablePagination
-							count={-1}
-							page={currentPage}
-							rowsPerPage={10}
-							onPageChange={handlePageChange}
-							component={'div'}
-							rowsPerPageOptions={[10]}
-							sx={{ maxHeight: '10vh'}}
-						/>
       </Paper>
     </Box>
 	)

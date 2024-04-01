@@ -8,6 +8,8 @@ import { useModalManager } from './hooks/useModalManager'
 import { FilterInput } from './components/FilterInput/FilterInput'
 import { CssBaseline, ThemeProvider, Typography, createTheme } from '@mui/material'
 import { useThemeSwitch } from './hooks'
+import { Header } from './components/Header/Header'
+import { PageWrapper } from './components/PageWrapper/PageWrapper'
 
 const themeLight = createTheme({
   palette: {
@@ -42,6 +44,7 @@ const themeDark = createTheme({
 function App() {
 
 	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const [isTop, setIsTop] = useState<boolean>(true);
 
 
 	function handleWindowSizeChange() {
@@ -51,11 +54,22 @@ function App() {
 			setIsMobile(false)
 	}
 
+	function handleScrollCheck() {
+		if (window.scrollY <= 35 && !isTop) {
+			setIsTop(true)
+		}
+		else if (window.scrollY > 50 && isTop) {
+			setIsTop(false)
+		}
+	}
+
 	useEffect(() => {
 		
     window.addEventListener('resize', handleWindowSizeChange);
+		window.addEventListener('scroll', handleScrollCheck);
     return () => {
         window.removeEventListener('resize', handleWindowSizeChange);
+				window.removeEventListener('scroll', handleScrollCheck);
     }
 	});
 
@@ -83,15 +97,13 @@ function App() {
 			</>
 			) : (
 				<>
-				<div style={{height: '10vh', marginTop: '1vh'}}>
-					<FilterInput />
-					<div style={{position: 'absolute', top: 30, right: 30}}>
-						<ThemeSwitch />
+				<PageWrapper>
+					<Header top={isTop}/>
+					<div style={{width: '70%', minWidth: 768}}>
+						<TagTable />
 					</div>
-				</div>
-				<div style={{width: '60%', minWidth: 768, maxHeight: '85vh'}}>
-					<TagTable />
-				</div>
+				</PageWrapper>	
+
 				{currentModal && currentModal}
 			</>
 			)
