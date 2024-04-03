@@ -1,4 +1,7 @@
 
+export type SortDirType = 'asc' | 'desc' 
+export type SortByType = 'popular' | 'name'
+
 export interface ITagData {
 	name: string,
 	count: number,

@@ -83,6 +83,7 @@ export const useTagData = create<TagDataState>((set, get) => ({
 				const url = 'https://api.stackexchange.com/2.3/tags?page=1&pagesize=100&' + endpoint;
 				const res = await axios.get(url);
 				dataCache.set(endpoint, res.data.items)
+				console.log(res.data)
 				set((state) => ({ ...state, loading: false, success: true, data: res.data.items.slice(from, to) }));
 			}
 			else if (cachedRes.length < to) {
@@ -134,7 +135,7 @@ export const useTagData = create<TagDataState>((set, get) => ({
 	decreasePage: () => { set((state) => ({currentPage: state.currentPage - 1})); get().execute() },
 	
 	setItemsPerPage: (val: number) => { set(({itemsPerPage: val})); get().execute() },
-	setSortBy: (by: 'name' | 'popular') => { set({sortBy: by}); get().execute },
+	setSortBy: (by: 'name' | 'popular') => { set({sortBy: by}); get().execute() },
 	setSortDir: (dir: 'asc' | 'desc') => { set({sortDir: dir}); get().execute() },
 	setFilter: (newFilter: string) => {set({ currentFilter: newFilter}); get().execute() },
 }));

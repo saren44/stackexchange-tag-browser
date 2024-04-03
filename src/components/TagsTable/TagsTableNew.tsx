@@ -28,26 +28,8 @@ import { IData } from '../../hooks/types';
 import { ITagData } from '../../hooks/types';
 
 
-interface ITagTableHeaderProps {
-	orderBy: keyof IData,
-	orderDirection: SortDir,
-	onSortChange: (by: keyof IData, dir: SortDir) => void,
-}
 
-const resolveDirection = (orderBy: keyof IData, label: keyof IData, dir: SortDir) => {
-	if (orderBy === label) {
-		return dir === 'asc' ? 'desc' : 'asc'
-	}
-	return 'asc'
-}
-
-const TagTableHeader = ({
-	orderBy,
-	orderDirection,
-	onSortChange
-}: ITagTableHeaderProps) => {
-
-
+const TagTableHeader = () => {
 
 	return (
 		<TableHead>
@@ -62,32 +44,14 @@ const TagTableHeader = ({
 					padding='none'
 					sx={{ width: '20%'}}
 				>
-					<TableSortLabel
-						active={orderBy === 'name'}
-						direction={orderBy === 'name' ? orderDirection : 'asc'}
-						onClick={() => onSortChange('name', resolveDirection(orderBy, 'name', orderDirection))}
-					>
 						Name
-						<Box component="span" sx={visuallyHidden}>
-							{'sorted ascending'}
-						</Box>
-					</TableSortLabel>
 				</TableCell>
 				<TableCell
 					align='left'
 					padding='normal'
 					sx={{ width: '20%'}}
 				>
-					<TableSortLabel
-						active={orderBy === 'count'}
-						direction={orderBy === 'count' ? orderDirection : 'asc'}
-						onClick={() => onSortChange('count', resolveDirection(orderBy, 'count', orderDirection))}
-					>
-						Count
-						<Box component="span" sx={visuallyHidden}>
-							{'sorted ascending'}
-						</Box>
-					</TableSortLabel>
+					Count
 				</TableCell>
 				<TableCell
 					align='right'
@@ -167,39 +131,11 @@ const TagTableRow = ({
 	)
 }
 
-type SortDir = 'asc' | 'desc'
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-interface ISortDetails {
-	by: keyof IData,
-	dir: SortDir
-}
 
 
 export const TagTable = () => {
-	const [currentPage, setCurrentPage] = useState<number>(0)
-	const [sortDetails, setSortDetails] = useState<ISortDetails>({by: 'count', dir: 'desc'})
-	const useFilter = useTagFilter();
 	const tagData = useTagData()
-
-	const handleGetData = () => {
-		tagData.execute()
-	}
-
-
-	const handleSortChange = (by: keyof IData, dir: SortDir) => {
-		setSortDetails({by, dir})
-		handleGetData()
-	}
 
 	useEffect(() => {
 		tagData.data === null && tagData.execute()
@@ -227,7 +163,7 @@ export const TagTable = () => {
             size={'small'}
 						stickyHeader
           >
-            <TagTableHeader orderBy={sortDetails.by} orderDirection={sortDetails.dir} onSortChange={handleSortChange}/>
+            <TagTableHeader />
             <TableBody sx= {{ overflowX: 'hidden' }}>
               {tagData.data.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
             </TableBody>
