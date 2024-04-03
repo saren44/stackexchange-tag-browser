@@ -80,7 +80,7 @@ export const useTagData = create<TagDataState>((set, get) => ({
 
 			if (!cachedRes) {
 				console.log('fetching')
-				const url = 'https://api.stackexchange.com/2.3/tags?page=1&pagesize=100&' + endpoint;
+				const url = 'https://api.stackexchange.com/2.3/tags?key=HPtJFSgz)KxanLYrndisYA((&page=1&pagesize=100&' + endpoint;
 				const res = await axios.get(url);
 				dataCache.set(endpoint, res.data.items)
 				console.log(res.data)
@@ -89,7 +89,7 @@ export const useTagData = create<TagDataState>((set, get) => ({
 			else if (cachedRes.length < to) {
 				console.log('downloading more')
 				const pageNumber = cachedRes.length / 100 + 1
-				const url = `https://api.stackexchange.com/2.3/tags?page=${pageNumber}&pagesize=100&` + endpoint;
+				const url = `https://api.stackexchange.com/2.3/tags?key=HPtJFSgz)KxanLYrndisYA((&page=${pageNumber}&pagesize=100&` + endpoint;
 				const res = await axios.get(url);
 				const newData = cachedRes.concat(res.data.items)
 				dataCache.set(endpoint, newData)

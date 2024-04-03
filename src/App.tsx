@@ -18,7 +18,7 @@ const themeLight = createTheme({
       default: "#d4d4d4"
     },
     primary: {
-			main: '#000000'
+			main: '#222222'
 		},
 		secondary: {
 			main: '#00ff00'
@@ -33,7 +33,7 @@ const themeDark = createTheme({
       default: "#222222"
     },
     primary: {
-			main: '#ffffff'
+			main: '#d4d4d4'
 		},
 		secondary: {
 			main: '#ffff00'
@@ -58,7 +58,7 @@ function App() {
 		if (window.scrollY <= 35 && !isTop) {
 			setIsTop(true)
 		}
-		else if (window.scrollY > 50 && isTop) {
+		else if (window.scrollY > 35 && isTop) {
 			setIsTop(false)
 		}
 	}

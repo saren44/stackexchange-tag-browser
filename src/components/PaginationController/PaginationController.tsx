@@ -28,7 +28,7 @@ export const PaginationController = ({top}: IPaginatioControllerProps) => {
 
 	return(
 		<Box>
-			<TextField helperText={top && (itemsPerPage === -1 ? 'incorrect entry' : 'items per page (1 - 100)')} size='small' onChange={(e) => handleInput(+e.target.value)} error={itemsPerPage === -1} inputProps={{'inputMode': 'numeric', 'aria-label': 'whatever you want'}}/>
+			<TextField color='primary' helperText={top && (itemsPerPage === -1 ? 'incorrect entry' : 'items per page (1 - 100)')} size='small' defaultValue={50} onChange={(e) => handleInput(+e.target.value)} error={itemsPerPage === -1} inputProps={{'inputMode': 'numeric', 'aria-label': 'whatever you want'}}/>
 			<IconButton onClick={decreasePage} disabled={currentPage === 0}>
 				<ArrowBack />
 			</IconButton>

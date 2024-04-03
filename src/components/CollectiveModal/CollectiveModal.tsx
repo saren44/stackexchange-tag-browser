@@ -1,7 +1,7 @@
 import Modal, { ModalProps } from '@mui/material/Modal'
 import { useModalManager } from '../../hooks/useModalManager'
-import { Typography } from '@mui/material'
-import { ICollective } from '../TagsTable/TagsTableNew';
+import { Link, Typography } from '@mui/material'
+import { ICollective } from '../../hooks/types'
 import Box from '@mui/material/Box'
 
 
@@ -24,7 +24,6 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-	color: 'black',
 	maxHeight: '60%',
 	overflowY: 'auto',
 };
@@ -39,6 +38,9 @@ const CollectiveRundown = ({ data }: ICollectiveRundownProps) => {
 				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 					{data.description}
 				</Typography>
+				<Link id="modal-modal-description" sx={{ mt: 2 }} href={`https://stackoverflow.com${data.link}`} target="_blank">
+					Website
+				</Link>
 		</>
 
 	)

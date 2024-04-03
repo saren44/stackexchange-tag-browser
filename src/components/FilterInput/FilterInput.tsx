@@ -40,6 +40,8 @@ export const FilterInput = ({top} : IFilterInputProps) => {
 			onKeyDown={handleKeyPress}
 			inputRef={inputRef} label={"search"} size='small'
 			helperText={top && 'enter name query'}
+			color='primary'
+
 			InputProps={{
 				endAdornment: 
 				<InputAdornment position="end">

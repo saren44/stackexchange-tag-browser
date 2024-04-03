@@ -22,7 +22,6 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-	color: 'black',
 	maxHeight: '60%',
 	overflowY: 'auto',
 };
@@ -51,7 +50,7 @@ export const InfoModal = ({
             {`moderator only? ${infoData.is_moderator_only}`}
           </Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {`required: ${infoData.is_required}`}
+            {`required? ${infoData.is_required}`}
           </Typography>
 					{ infoData.synonyms &&
 					<>

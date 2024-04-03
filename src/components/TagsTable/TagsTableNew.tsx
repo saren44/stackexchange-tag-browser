@@ -27,6 +27,10 @@ import { useTagData, useTagFilter } from '../../hooks';
 import { IData } from '../../hooks/types';
 import { ITagData } from '../../hooks/types';
 
+import Dots from "react-activity/dist/Dots";
+import "react-activity/dist/Dots.css";
+
+
 
 
 const TagTableHeader = () => {
@@ -95,6 +99,7 @@ const TagTableRow = ({
 		<TableRow
 		tabIndex={-1}
 		key={tagData.name}
+		sx={{ backgroundColor: 'background.default'}}
 		>
 		<TableCell padding='checkbox'>
 			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 24 }} color={'primary'}></Typography>
@@ -142,15 +147,32 @@ export const TagTable = () => {
 	}, [])
 
 	if (tagData.loading) {
-		return <span> loading </span>
+		return <>
+			<Dots />
+			<Typography> loading </Typography>
+		</>
 	}
 
 	if (tagData.error) {
-		return <span> {tagData.errorMessage} </span>
+		return (
+			<>
+				<Typography color={'red'}>
+					Error!
+				</Typography>
+			</>
+
+		)
 	}
 
-	if (tagData.data === null) {
-		return <span> no results </span>
+	if (tagData.data === null || tagData.data.length === 0) {
+		return (
+			<>
+			<Typography color={'red'}>
+				No results for the specified query
+			</Typography>
+		</>
+		)			
+
 	}
 
 	return(

@@ -27,34 +27,36 @@ export const Header = ({top}: IHeaderProps) => {
 			transitionProperty: 'width, height',
 			transitionDuration: '0.3s',
 			transitionDelay: '0s',
-			height: top ? '20vh' : '10vh',
+			height: top ? '120px' : '80px',
 			width: top ? '90%' : '70%'
 		}}
 	>
 		
 		<FilterInput top={top}/>
 		<Select
-    labelId="sortdir-select-label"
-    id="sortrdir-label"
-    defaultValue={"desc"}
-    label="Sort dir"
-    onChange={(e) => setSortDir(e.target.value as (SortDirType))}
-		size={top ? 'medium' : 'small'}
-  >
-    <MenuItem value={"asc"}>Ascending</MenuItem>
-    <MenuItem value={"desc"}>Descending</MenuItem>
-  </Select>
-	<Select
     labelId="sortby-select-label"
     id="sortby-select"
     defaultValue={"popular"}
-    label="Sort by"
     onChange={(e) => setSortBy(e.target.value as (SortByType))}
+		color='primary'
 		size={top ? 'medium' : 'small'}
   >
     <MenuItem value={"name"}>Name</MenuItem>
     <MenuItem value={"popular"}>Count</MenuItem>
   </Select>
+		<Select
+    labelId="sortdir-select-label"
+
+    id="sortrdir-label"
+    defaultValue={"desc"}
+    onChange={(e) => setSortDir(e.target.value as (SortDirType))}
+		size={top ? 'medium' : 'small'}
+		color='primary'
+  >
+    <MenuItem value={"asc"}>Ascending</MenuItem>
+    <MenuItem value={"desc"}>Descending</MenuItem>
+  </Select>
+
 		<PaginationController top={top}/>
 		<ThemeSwitch />
 	</Box>
