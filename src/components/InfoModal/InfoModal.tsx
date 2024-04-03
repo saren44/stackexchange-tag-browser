@@ -1,17 +1,10 @@
 import Modal, { ModalProps } from '@mui/material/Modal'
 import { useModalManager } from '../../hooks/useModalManager'
 import { Typography } from '@mui/material'
-import { ICollective } from '../TagsTable/TagsTableNew';
 import Box from '@mui/material/Box'
+import { ITagData } from '../../hooks/types';
 
-export interface ITagData {
-	name: string,
-	count: number,
-	has_synonyms: boolean,
-	is_moderator_only: boolean,
-	is_required: boolean,
-	synonyms?: Array<string>,
-}
+
 
 
 export interface IInfoModalProps {

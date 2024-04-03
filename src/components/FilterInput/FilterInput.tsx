@@ -7,8 +7,12 @@ import { useEffect, useRef } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 
 
-export const FilterInput = () => {
-	const setFilter = useTagFilter((state) => state.setFilter);
+interface IFilterInputProps {
+	top: boolean
+}
+
+export const FilterInput = ({top} : IFilterInputProps) => {
+	const setFilter = useTagData((state) => state.setFilter);
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const commitText = () => {
@@ -35,7 +39,7 @@ export const FilterInput = () => {
 			<TextField 
 			onKeyDown={handleKeyPress}
 			inputRef={inputRef} label={"search"} size='small'
-			helperText='enter name query'
+			helperText={top && 'enter name query'}
 			InputProps={{
 				endAdornment: 
 				<InputAdornment position="end">

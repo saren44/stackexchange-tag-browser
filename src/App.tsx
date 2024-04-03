@@ -15,7 +15,7 @@ const themeLight = createTheme({
   palette: {
 		mode: 'light',
     background: {
-      default: "#ffffff"
+      default: "#d4d4d4"
     },
     primary: {
 			main: '#000000'
@@ -84,7 +84,7 @@ function App() {
 			(
 			<>
 				<div style={{maxHeight: '15vh', marginTop: '1vh'}}>
-					<FilterInput />
+					<FilterInput top/>
 					<div style={{position: 'absolute', top: 30, right: 30}}>
 						<ThemeSwitch />
 					</div>

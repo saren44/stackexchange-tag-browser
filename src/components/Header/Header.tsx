@@ -30,8 +30,8 @@ export const Header = ({top}: IHeaderProps) => {
 		}}
 	>
 		
-		<FilterInput />
-		<PaginationController />
+		<FilterInput top={top}/>
+		<PaginationController top={top}/>
 		<ThemeSwitch />
 	</Box>
 	)

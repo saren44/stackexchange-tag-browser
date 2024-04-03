@@ -18,29 +18,15 @@ import Info from '@mui/icons-material/Info';
 import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
 import { useModalManager } from '../../hooks/useModalManager';
 import { CollectiveModal } from '../CollectiveModal/CollectiveModal';
-import { ITagData, InfoModal } from '../InfoModal/InfoModal';
+import { InfoModal } from '../InfoModal/InfoModal';
 import { TableFooter } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { visuallyHidden } from '@mui/utils'
 import { Primary, Secondary } from '../../stories/Button.stories';
+import { useTagData, useTagFilter } from '../../hooks';
+import { IData } from '../../hooks/types';
+import { ITagData } from '../../hooks/types';
 
-export interface IData extends ITagData {
-	collectives?: Array<ICollective>
-}
-
-export interface ICollective {
-	tags: Array<string>,
-	description: string,
-	link: string,
-	name: string,
-	slug: string,
-	external_links: Array<IExternalLink>
-}
-
-interface IExternalLink {
-	type: string,
-	link: string
-}
 
 interface ITagTableHeaderProps {
 	orderBy: keyof IData,
@@ -62,6 +48,7 @@ const TagTableHeader = ({
 }: ITagTableHeaderProps) => {
 
 
+
 	return (
 		<TableHead>
 			<TableRow>
@@ -73,7 +60,7 @@ const TagTableHeader = ({
 				<TableCell
 					align='left'
 					padding='none'
-					size='small'
+					sx={{ width: '20%'}}
 				>
 					<TableSortLabel
 						active={orderBy === 'name'}
@@ -89,7 +76,7 @@ const TagTableHeader = ({
 				<TableCell
 					align='left'
 					padding='normal'
-					size='small'
+					sx={{ width: '20%'}}
 				>
 					<TableSortLabel
 						active={orderBy === 'count'}
@@ -201,22 +188,39 @@ interface ISortDetails {
 export const TagTable = () => {
 	const [currentPage, setCurrentPage] = useState<number>(0)
 	const [sortDetails, setSortDetails] = useState<ISortDetails>({by: 'count', dir: 'desc'})
+	const useFilter = useTagFilter();
+	const tagData = useTagData()
 
-
-
-	const handlePageChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, page: number) => {
-		//console.log(page)
-		setCurrentPage(page)
+	const handleGetData = () => {
+		tagData.execute()
 	}
+
 
 	const handleSortChange = (by: keyof IData, dir: SortDir) => {
 		setSortDetails({by, dir})
+		handleGetData()
+	}
+
+	useEffect(() => {
+		tagData.data === null && tagData.execute()
+	}, [])
+
+	if (tagData.loading) {
+		return <span> loading </span>
+	}
+
+	if (tagData.error) {
+		return <span> {tagData.errorMessage} </span>
+	}
+
+	if (tagData.data === null) {
+		return <span> no results </span>
 	}
 
 	return(
     <Box sx={{ width: '100%', height: '100%' }} >
       <Paper sx={{ width: '100%', mb: 2, height: '100%' }}>
-        <TableContainer color={'secondary'}>
+        <TableContainer color={'background.default'}>
           <Table
             sx={{ minWidth: 300, }}
             aria-labelledby="tableTitle"
@@ -225,7 +229,7 @@ export const TagTable = () => {
           >
             <TagTableHeader orderBy={sortDetails.by} orderDirection={sortDetails.dir} onSortChange={handleSortChange}/>
             <TableBody sx= {{ overflowX: 'hidden' }}>
-              {mockTagData.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
+              {tagData.data.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
             </TableBody>
           </Table>
 
