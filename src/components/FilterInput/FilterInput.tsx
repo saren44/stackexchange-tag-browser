@@ -1,10 +1,7 @@
-import TextField from '@mui/material/TextField'
 import { useTagData } from '../../hooks'
 import Search from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton'
-import { Box } from '@mui/material';
+import { Box, TextField, IconButton, InputAdornment } from '@mui/material';
 import { useRef } from 'react';
-import InputAdornment from '@mui/material/InputAdornment';
 
 
 interface IFilterInputProps {

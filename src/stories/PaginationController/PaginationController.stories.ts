@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PaginationController } from '../../components/PaginationController/PaginationController';
+import { PaginationController } from '../../components/PaginationController';
 import { themeWrap } from '../themeWrapper';
 
 const meta = {

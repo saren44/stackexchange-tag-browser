@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FilterInput } from '../../components/FilterInput/FilterInput';
+import { FilterInput } from '../../components/FilterInput';
 import { themeWrap } from '../themeWrapper';
 
 const meta = {

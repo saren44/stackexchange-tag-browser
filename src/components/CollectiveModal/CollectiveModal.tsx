@@ -1,10 +1,5 @@
-import Modal from '@mui/material/Modal'
-import { useModalManager } from '../../hooks/useModalManager'
-import Link from '@mui/material/Link'
-import Typography from '@mui/material/Typography'
-import { ICollective } from '../../hooks/types'
-import Box from '@mui/material/Box'
-import { IconButton } from '@mui/material'
+import { useModalManager, ICollective } from '../../hooks'
+import { IconButton, Link, Typography, Box, Modal } from '@mui/material'
 import { Close } from '@mui/icons-material'
 
 export interface ICollectiveModalProps {
@@ -35,17 +30,17 @@ const style = {
 const CollectiveRundown = ({ data }: ICollectiveRundownProps) => {
 
 	return (
-		<>
-				<Typography id="modal-modal-title" variant="h6" component="h2">
+		<Box>
+				<Typography id="modal-modal-title" variant="h5">
 					{`${data.name}`}
 				</Typography>
-				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+				<Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
 					{data.description}
 				</Typography>
-				<Link id="modal-modal-description" sx={{ mt: 2 }} href={`https://stackoverflow.com${data.link}`} target="_blank">
+				<Link id="modal-modal-description" href={`https://stackoverflow.com${data.link}`} target="_blank">
 					Website
 				</Link>
-		</>
+		</Box>
 
 	)
 }

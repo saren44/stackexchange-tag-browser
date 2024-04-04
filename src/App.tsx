@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { ThemeSwitch } from './components/ThemeSwitch'
-import { TagTableWrapper } from './components/TagsTable/TagsTableNew'
+import { TagTableWrapper } from './components/TagsTable/TagTable'
 import { useModalManager } from './hooks/useModalManager'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useThemeSwitch } from './hooks'
@@ -18,7 +18,7 @@ function App() {
 
 
 
-	function handleWindowSizeChange() {
+	const handleWindowSizeChange = () => {
     if (!isMobile && window.innerWidth <= 768)
 			setIsMobile(true)
 		else if (isMobile && window.innerWidth > 768)

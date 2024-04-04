@@ -1,9 +1,6 @@
-import Modal from '@mui/material/Modal'
-import { useModalManager } from '../../hooks/useModalManager'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
+import { useModalManager } from '../../hooks'
 import { ITagData } from '../../hooks/types';
-import { IconButton } from '@mui/material';
+import { IconButton, Modal, Typography, Box } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 
@@ -43,7 +40,7 @@ export const InfoModal = ({
 			open={true}
 			onClose={onClose}
 		>
-        <Box sx={style}>
+			<Box sx={style}>
 				<Box 
 					position={'absolute'}
 					top={'20px'}
@@ -53,21 +50,27 @@ export const InfoModal = ({
 						<Close />
 					</IconButton>
 				</Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {`${infoData.name} details`}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {`count: ${infoData.count}`}
-          </Typography>
+					<Typography id="modal-modal-title" variant="h5">
+						{`${infoData.name}`}
+					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {`moderator only? ${infoData.is_moderator_only}`}
-          </Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {`required? ${infoData.is_required}`}
-          </Typography>
+						{`count: ${infoData.count}`}
+					</Typography>
+					{
+						infoData.is_moderator_only &&
+						<Typography id="modal-modal-description" sx={{ mt: 2, textDecoration: 'underline' }}>
+							{`moderator only`}
+						</Typography>
+					}
+					{
+						infoData.is_required &&
+						<Typography id="modal-modal-description" sx={{ mt: 2, textDecoration: 'underline' }}>
+							{`required`}
+						</Typography>
+					}
 					{ infoData.synonyms &&
 					<>
-						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						<Typography id="modal-modal-description" sx={{ mt: 2 }} variant="h6">
 							{`synonyms:`}
 						</Typography>
 						<Box>
@@ -83,7 +86,7 @@ export const InfoModal = ({
 
 					}
 
-        </Box>
+					</Box>
 		</Modal>
 	)
 }

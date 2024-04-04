@@ -1,11 +1,8 @@
-import Box from '@mui/material/Box'
-import MenuItem from '@mui/material/MenuItem'
-import Select from "@mui/material/Select"
-import { FilterInput } from "../FilterInput/FilterInput"
+import { Box, Select, MenuItem } from '@mui/material'
+import { FilterInput } from '../FilterInput'
 import { ThemeSwitch } from "../ThemeSwitch"
-import { PaginationController } from "../PaginationController/PaginationController"
-import { useTagData } from "../../hooks"
-import { SortByType, SortDirType } from "../../hooks/types"
+import { PaginationController } from "../PaginationController"
+import { useTagData, SortByType, SortDirType } from "../../hooks"
 import { useState, useEffect } from "react"
 
 interface IHeaderProps {

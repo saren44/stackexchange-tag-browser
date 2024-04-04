@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CollectiveModal } from '../../components/CollectiveModal/CollectiveModal';
+import { CollectiveModal } from '../../components/CollectiveModal';
 import { themeWrap } from '../themeWrapper';
 
 const mockCollective = 	[

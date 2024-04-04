@@ -1,30 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { InfoModal } from '../../components/InfoModal';
+import { Header } from '../../components/Header';
 import { themeWrap } from '../themeWrapper';
 
-const mockTagInfo = 	{
-	"synonyms": [
-		"csharp",
-		"c#-language",
-		"c-sharp",
-		"c#.net",
-		"visual-c#",
-		".cs-file"
-	],
-	"has_synonyms": true,
-	"is_moderator_only": false,
-	"is_required": false,
-	"count": 1614839,
-	"name": "c#"
-}
-
 const meta = {
-  title: 'Example/Info Modal',
-  component: InfoModal,
+  title: 'Example/Header',
+  component: Header,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
-} satisfies Meta<typeof InfoModal>;
+} satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -36,8 +20,8 @@ export const Light: Story = {
 	decorators: [
 		(Story) => themeWrap(Story, true)
 	],
-  args: {
-		infoData: mockTagInfo,
+	args: {
+		mobile: true,
   },
 };
 
@@ -49,6 +33,7 @@ export const Dark: Story = {
 		(Story) => themeWrap(Story, false)
 	],
   args: {
-		infoData: mockTagInfo
+		mobile: true,
   },
 };
+

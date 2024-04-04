@@ -1,7 +1,6 @@
-import Checkbox from '@mui/material/Checkbox'
+import { Checkbox } from '@mui/material'
 import { useThemeSwitch } from '../../hooks'
-import DarkModeTwoTone from '@mui/icons-material/DarkModeTwoTone'
-import LightModeTwoTone from '@mui/icons-material/LightModeTwoTone'
+import { DarkModeTwoTone, LightModeTwoTone } from '@mui/icons-material'
 
 
 

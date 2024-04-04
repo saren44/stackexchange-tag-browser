@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TagTable } from '../../components/TagsTable/TagsTableNew';
+import { TagTable } from '../../components/TagsTable';
 import { mockTagData } from '../../components/TagsTable/mockData';
 import { themeWrap } from '../themeWrapper';
 

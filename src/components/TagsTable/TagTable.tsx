@@ -1,17 +1,5 @@
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-
-import IconButton from '@mui/material/IconButton';
-import Groups from '@mui/icons-material/Groups';
-import Info from '@mui/icons-material/Info';
-import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
+import { IconButton, Paper, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box } from '@mui/material';
+import { Groups, Info, OpenInNewRounded } from '@mui/icons-material';
 import { useModalManager } from '../../hooks/useModalManager';
 import { CollectiveModal } from '../CollectiveModal/CollectiveModal';
 import { InfoModal } from '../InfoModal/InfoModal';

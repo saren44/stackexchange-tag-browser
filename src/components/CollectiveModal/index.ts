@@ -1,0 +1,1 @@
+export { CollectiveModal } from './CollectiveModal'
