@@ -48,6 +48,8 @@ export const Header = ({mobile}: IHeaderProps) => {
 			height: mobile ? '' : isTop ? '120px' : '80px',
 			width: mobile ? '100%' : (isTop ? '90%' : '70%'),
 			minWidth: mobile ? '' : '768px',
+			gap: mobile ? '10px' : '',
+			marginTop: mobile ? '20px' : '',
 		}}
 	>
 		

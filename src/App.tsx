@@ -77,7 +77,7 @@ function App() {
 			(
 			<>
 			<MobileWrapper>
-				<div style={{position: 'absolute', top: 10, right: 10, zIndex: 11}}>
+				<div style={{position: 'absolute', top: 20, right: 20, zIndex: 11}}>
 					<ThemeSwitch />
 				</div>
 				<Header mobile/>

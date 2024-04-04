@@ -2,21 +2,6 @@ import axios from "axios";
 import { create } from "zustand";
 import { IData } from "./types";
 
-interface MockType {
-	completed: boolean;
-	id: number;
-	userId: number;
-	title: string;
-}
-
-interface TagReturnType {
-	items: Array<IData>;
-	has_more: boolean;
-	quota_max: number;
-	quota_remaining: number;
-}
-
-
 
 interface TagDataState {
 	loading: boolean;
@@ -33,8 +18,6 @@ interface TagDataState {
 
 	errorMessage: string | null;
 	execute: () => void;
-	mockExecute: (id: number) => void;
-	mockData: MockType | null,
 	setItemsPerPage: (val: number) => void;
 	decreasePage: () => void;
 	increasePage: () => void;
@@ -43,7 +26,6 @@ interface TagDataState {
 	setSortBy: (by: 'popular' | 'name') => void;
 }
 
-const mockDataCache : Map<number, MockType> = new Map<number, MockType>();
 const dataCache : Map<string, IData[]> = new Map<string, IData[]>();
 
 
@@ -55,7 +37,6 @@ export const useTagData = create<TagDataState>((set, get) => ({
 	errorMessage: null,
 	currentPage: 0,
 	itemsPerPage: 50,
-	mockData: null,
 	sortBy: "popular",
 	sortDir: "desc",
 
@@ -108,28 +89,6 @@ export const useTagData = create<TagDataState>((set, get) => ({
     }
   },
 
-  mockExecute: async (id: number) => {
-    set((state) => ({ ...state, loading: true }));
-    try {
-			const cachedRes = mockDataCache.get(id);
-			if (cachedRes) {
-				console.log('using cached')
-				set((state) => ({ ...state, loading: false, success: true, mockData: cachedRes }));
-			}
-			else {
-				console.log('fetching')
-				const res = await axios.get(`https://jsonplaceholder.typicode.com/todos/${id}`);
-				mockDataCache.set(id, res.data)
-				set((state) => ({ ...state, loading: false, success: true, mockData: res.data }));
-			}
-    } catch (err: Error | unknown) {
-      console.error("Error in data fetch:", err);
-			let msg: string;
-			if (err instanceof Error) msg = err.message
-			else msg = String(err)
-			set((state) => ({ ...state, loading: false, error: true, errorMessage: msg }));
-    }
-  },
 
 	increasePage: () => { set((state) => ({currentPage: state.currentPage + 1})); get().execute() },
 	decreasePage: () => { set((state) => ({currentPage: state.currentPage - 1})); get().execute() },

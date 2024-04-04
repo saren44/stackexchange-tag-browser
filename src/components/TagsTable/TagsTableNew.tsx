@@ -140,20 +140,24 @@ const TagTableRow = ({
 
 
 export const TagTable = () => {
-	const tagData = useTagData()
+
+	const data = useTagData((state) => state.data)
+	const loading = useTagData((state) => state.loading)
+	const error = useTagData((state) => state.error)
+	const execute = useTagData((state) => state.execute)
 
 	useEffect(() => {
-		tagData.data === null && tagData.execute()
+		data === null && execute()
 	}, [])
 
-	if (tagData.loading) {
+	if (loading) {
 		return <>
 			<Dots />
 			<Typography> loading </Typography>
 		</>
 	}
 
-	if (tagData.error) {
+	if (error) {
 		return (
 			<>
 				<Typography color={'red'}>
@@ -164,7 +168,7 @@ export const TagTable = () => {
 		)
 	}
 
-	if (tagData.data === null || tagData.data.length === 0) {
+	if (data === null || data.length === 0) {
 		return (
 			<>
 			<Typography color={'red'}>
@@ -187,7 +191,7 @@ export const TagTable = () => {
           >
             <TagTableHeader />
             <TableBody sx= {{ overflowX: 'hidden' }}>
-              {tagData.data.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
+              {data.map((row) => <TagTableRow tagData={row} key={row.name}/>)}
             </TableBody>
           </Table>
 

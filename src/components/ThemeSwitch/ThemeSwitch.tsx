@@ -8,7 +8,8 @@ import { pink } from '@mui/material/colors';
 
 
 export const ThemeSwitch = () => {
-	const { switchTheme, lightDefault } = useThemeSwitch();
+	const switchTheme = useThemeSwitch((state) => state.switchTheme)
+	const lightDefault = useThemeSwitch((statte) => statte.lightDefault)
 
 	return (
 		<Checkbox 

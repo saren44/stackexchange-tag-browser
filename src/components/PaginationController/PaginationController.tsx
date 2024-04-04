@@ -11,7 +11,9 @@ interface IPaginatioControllerProps {
 }
 
 export const PaginationButtons = () => {
-	const { currentPage, increasePage, decreasePage} = useTagData() 
+	const currentPage = useTagData((state) => state.currentPage)
+	const increasePage = useTagData((state) => state.increasePage)
+	const decreasePage = useTagData((state) => state.decreasePage)
 
 	return (
 		<Box>
