@@ -99,7 +99,7 @@ const TagTableRow = ({
 		<TableRow
 		tabIndex={-1}
 		key={tagData.name}
-		sx={{ backgroundColor: 'background.default'}}
+
 		>
 		<TableCell padding='checkbox'>
 			<Typography className={`devicon-${tagData.name}-plain`} sx={{ fontSize: 24 }} color={'primary'}></Typography>
@@ -178,7 +178,7 @@ export const TagTable = () => {
 	return(
     <Box sx={{ width: '100%', height: '100%' }} >
       <Paper sx={{ width: '100%', mb: 2, height: '100%' }}>
-        <TableContainer color={'background.default'}>
+        <TableContainer sx={{ backgroundColor: 'background.default'}}>
           <Table
             sx={{ minWidth: 300, }}
             aria-labelledby="tableTitle"

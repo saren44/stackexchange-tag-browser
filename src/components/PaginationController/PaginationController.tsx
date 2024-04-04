@@ -10,10 +10,25 @@ interface IPaginatioControllerProps {
 	top: boolean
 }
 
+export const PaginationButtons = () => {
+	const { currentPage, increasePage, decreasePage} = useTagData() 
+
+	return (
+		<Box>
+			<IconButton onClick={decreasePage} disabled={currentPage === 0}>
+				<ArrowBack />
+			</IconButton>
+			<span> {currentPage} </span>
+			<IconButton onClick={increasePage}>
+				<ArrowForward />
+			</IconButton>
+		</Box>
+	)
+}
+
 
 export const PaginationController = ({top}: IPaginatioControllerProps) => {
-	const [val, setVal] = useState<number>(50);
-	const { currentPage, increasePage, decreasePage, itemsPerPage, setItemsPerPage} = useTagData() 
+	const { itemsPerPage, setItemsPerPage} = useTagData() 
 
 	const handleInput = (e: number) => {
 		console.log(e)
@@ -27,15 +42,10 @@ export const PaginationController = ({top}: IPaginatioControllerProps) => {
 	}
 
 	return(
-		<Box>
+		<Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'}>
 			<TextField color='primary' helperText={top && (itemsPerPage === -1 ? 'incorrect entry' : 'items per page (1 - 100)')} size='small' defaultValue={50} onChange={(e) => handleInput(+e.target.value)} error={itemsPerPage === -1} inputProps={{'inputMode': 'numeric', 'aria-label': 'whatever you want'}}/>
-			<IconButton onClick={decreasePage} disabled={currentPage === 0}>
-				<ArrowBack />
-			</IconButton>
-			<span> {currentPage} </span>
-			<IconButton onClick={increasePage}>
-				<ArrowForward />
-			</IconButton>
+			<PaginationButtons />
+
 		</Box>
 	)
 }

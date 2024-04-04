@@ -10,6 +10,8 @@ import { CssBaseline, ThemeProvider, Typography, createTheme } from '@mui/materi
 import { useThemeSwitch } from './hooks'
 import { Header } from './components/Header/Header'
 import { PageWrapper } from './components/PageWrapper/PageWrapper'
+import { MobileWrapper } from './components/MobileWrapper/MobileWrapper'
+import { PaginationButtons } from './components/PaginationController/PaginationController'
 
 const themeLight = createTheme({
   palette: {
@@ -44,7 +46,7 @@ const themeDark = createTheme({
 function App() {
 
 	const [isMobile, setIsMobile] = useState<boolean>(false);
-	const [isTop, setIsTop] = useState<boolean>(true);
+
 
 
 	function handleWindowSizeChange() {
@@ -54,22 +56,13 @@ function App() {
 			setIsMobile(false)
 	}
 
-	function handleScrollCheck() {
-		if (window.scrollY <= 35 && !isTop) {
-			setIsTop(true)
-		}
-		else if (window.scrollY > 35 && isTop) {
-			setIsTop(false)
-		}
-	}
+
 
 	useEffect(() => {
 		
     window.addEventListener('resize', handleWindowSizeChange);
-		window.addEventListener('scroll', handleScrollCheck);
     return () => {
         window.removeEventListener('resize', handleWindowSizeChange);
-				window.removeEventListener('scroll', handleScrollCheck);
     }
 	});
 
@@ -83,22 +76,22 @@ function App() {
 			isMobile ?
 			(
 			<>
-				<div style={{maxHeight: '15vh', marginTop: '1vh'}}>
-					<FilterInput top/>
-					<div style={{position: 'absolute', top: 30, right: 30}}>
-						<ThemeSwitch />
-					</div>
-					
+			<MobileWrapper>
+				<div style={{position: 'absolute', top: 10, right: 10, zIndex: 11}}>
+					<ThemeSwitch />
 				</div>
+				<Header mobile/>
 				<div style={{width: '100vw', overflowX: 'hidden', overflowY: 'hidden'}}>
 					<TagTable />
 				</div>
+				<PaginationButtons />
+			</MobileWrapper>
 				{currentModal && currentModal}
 			</>
 			) : (
 				<>
 				<PageWrapper>
-					<Header top={isTop}/>
+					<Header mobile={false}/>
 					<div style={{width: '70%', minWidth: 768}}>
 						<TagTable />
 					</div>

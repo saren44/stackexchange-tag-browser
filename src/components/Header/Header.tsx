@@ -4,35 +4,54 @@ import { ThemeSwitch } from "../ThemeSwitch"
 import { PaginationController } from "../PaginationController/PaginationController"
 import { useTagData } from "../../hooks"
 import { SortByType, SortDirType } from "../../hooks/types"
+import { useState, useEffect } from "react"
 
 interface IHeaderProps {
-	top: boolean
+	mobile: boolean
 }
 
-export const Header = ({top}: IHeaderProps) => {
+export const Header = ({mobile}: IHeaderProps) => {
 	const setSortBy = useTagData((state) => state.setSortBy)
 	const setSortDir = useTagData((state) => state.setSortDir)
+	const [isTop, setIsTop] = useState<boolean>(true);
+
+	function handleScrollCheck() {
+		if (window.scrollY <= 35 && !isTop) {
+			setIsTop(true)
+		}
+		else if (window.scrollY > 35 && isTop) {
+			setIsTop(false)
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScrollCheck);
+    return () => {
+				window.removeEventListener('scroll', handleScrollCheck);
+    }
+	});
 
 	return (
 	<Box
 		display={'flex'}
-		flexDirection={'row'}
+		flexDirection={mobile ? 'column' : 'row'}
 		alignItems={'center'}
 		justifyContent={'space-between'}
 		top={0}
-		position={'sticky'}
+		position={mobile ? 'relative' : 'sticky'}
 		bgcolor={'background.default'}
 		zIndex={10}
 		sx={{
 			transitionProperty: 'width, height',
 			transitionDuration: '0.3s',
 			transitionDelay: '0s',
-			height: top ? '120px' : '80px',
-			width: top ? '90%' : '70%'
+			height: mobile ? '' : isTop ? '120px' : '80px',
+			width: mobile ? '100%' : (isTop ? '90%' : '70%'),
+			minWidth: mobile ? '' : '768px',
 		}}
 	>
 		
-		<FilterInput top={top}/>
+		<FilterInput top={isTop}/>
 		<Select
     labelId="sortby-select-label"
     id="sortby-select"
@@ -57,8 +76,8 @@ export const Header = ({top}: IHeaderProps) => {
     <MenuItem value={"desc"}>Descending</MenuItem>
   </Select>
 
-		<PaginationController top={top}/>
-		<ThemeSwitch />
+		<PaginationController top={isTop}/>
+		{!mobile && <ThemeSwitch />}
 	</Box>
 	)
 }
