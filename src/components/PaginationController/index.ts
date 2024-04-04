@@ -1,1 +1,1 @@
-export { PaginationController } from './PaginationController'
+export { PaginationController } from "./PaginationController";

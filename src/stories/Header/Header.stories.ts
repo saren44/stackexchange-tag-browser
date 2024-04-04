@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Header } from '../../components/Header';
-import { themeWrap } from '../themeWrapper';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Header } from "../../components/Header";
+import { themeWrap } from "../themeWrapper";
 
 const meta = {
-  title: 'TagOverflow/Header',
+  title: "TagOverflow/Header",
   component: Header,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
 } satisfies Meta<typeof Header>;
 
@@ -14,26 +14,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-	parameters: {
-		backgrounds: {default: 'light'}
-	},
-	decorators: [
-		(Story) => themeWrap(Story, true)
-	],
-	args: {
-		mobile: true,
+  parameters: {
+    backgrounds: { default: "light" },
+  },
+  decorators: [(Story) => themeWrap(Story, true)],
+  args: {
+    mobile: true,
   },
 };
 
 export const Dark: Story = {
-	parameters: {
-		backgrounds: {default: 'dark'}
-	},
-	decorators: [
-		(Story) => themeWrap(Story, false)
-	],
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
+  decorators: [(Story) => themeWrap(Story, false)],
   args: {
-		mobile: false,
+    mobile: false,
   },
 };
-

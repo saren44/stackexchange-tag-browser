@@ -1,1 +1,1 @@
-export { CollectiveModal } from './CollectiveModal'
+export { CollectiveModal } from "./CollectiveModal";

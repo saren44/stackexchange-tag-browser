@@ -1,1 +1,1 @@
-export { MobileWrapper } from './MobileWrapper'
+export { MobileWrapper } from "./MobileWrapper";

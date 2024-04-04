@@ -1,1 +1,1 @@
-export { TagTable, TagTableWrapper } from './TagTable'
+export { TagTable, TagTableWrapper } from "./TagTable";

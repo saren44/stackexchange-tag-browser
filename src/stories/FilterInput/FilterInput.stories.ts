@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { FilterInput } from '../../components/FilterInput';
-import { themeWrap } from '../themeWrapper';
+import type { Meta, StoryObj } from "@storybook/react";
+import { FilterInput } from "../../components/FilterInput";
+import { themeWrap } from "../themeWrapper";
 
 const meta = {
-  title: 'TagOverflow/Filter',
+  title: "TagOverflow/Filter",
   component: FilterInput,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 } satisfies Meta<typeof FilterInput>;
 
@@ -14,26 +14,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-	parameters: {
-		backgrounds: {default: 'light'}
-	},
-	decorators: [
-		(Story) => themeWrap(Story, true)
-	],
+  parameters: {
+    backgrounds: { default: "light" },
+  },
+  decorators: [(Story) => themeWrap(Story, true)],
   args: {
-		top: true,
+    top: true,
   },
 };
 
 export const Dark: Story = {
-	parameters: {
-		backgrounds: {default: 'dark'}
-	},
-	decorators: [
-		(Story) => themeWrap(Story, false)
-	],
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
+  decorators: [(Story) => themeWrap(Story, false)],
   args: {
-		top: true,
+    top: true,
   },
 };
-
