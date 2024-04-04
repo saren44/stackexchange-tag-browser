@@ -29,7 +29,6 @@ export const PaginationController = ({top}: IPaginatioControllerProps) => {
 	const { itemsPerPage, setItemsPerPage} = useTagData() 
 
 	const handleInput = (e: number) => {
-		console.log(e)
 		if (isNaN(e) || e < 0 || e > 100) {
 			setItemsPerPage(-1)
 		}

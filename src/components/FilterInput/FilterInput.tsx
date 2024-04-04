@@ -13,7 +13,6 @@ export const FilterInput = ({top} : IFilterInputProps) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const commitText = () => {
-		console.log('search')
 		inputRef.current !== null && setFilter(inputRef.current.value);
 	}
 

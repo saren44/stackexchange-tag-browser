@@ -55,32 +55,28 @@ export const useTagData = create<TagDataState>((set, get) => ({
     try {
 			const endpoint = `order=${dir}&sort=${by}${inname !== '' ? `&inname=${inname}` : ''}&site=stackoverflow&filter=!nNPvSNMp2Q`
 			
-			console.log(endpoint, ipp)
 
 			const cachedRes = dataCache.get(endpoint);
 
 			if (!cachedRes) {
-				console.log('fetching')
 				const url = 'https://api.stackexchange.com/2.3/tags?key=HPtJFSgz)KxanLYrndisYA((&page=1&pagesize=100&' + endpoint;
 				const res = await axios.get(url);
 				dataCache.set(endpoint, res.data.items)
-				console.log(res.data)
-				set((state) => ({ ...state, loading: false, success: true, data: res.data.items.slice(from, to) }));
+				set((state) => ({ ...state, loading: false, success: true, data: res.data.items.slice(from, to), error: false }));
 			}
 			else if (cachedRes.length < to) {
-				console.log('downloading more')
 				const pageNumber = cachedRes.length / 100 + 1
 				const url = `https://api.stackexchange.com/2.3/tags?key=HPtJFSgz)KxanLYrndisYA((&page=${pageNumber}&pagesize=100&` + endpoint;
 				const res = await axios.get(url);
 				const newData = cachedRes.concat(res.data.items)
 				dataCache.set(endpoint, newData)
-				set((state) => ({ ...state, loading: false, success: true, data: newData.slice(from, to) }));
+				set((state) => ({ ...state, loading: false, success: true, data: newData.slice(from, to), error: false }));
 			}
 			else {
-				console.log('using cached')
-				set((state) => ({ ...state, loading: false, success: true, data: cachedRes.slice(from, to) }));
+				set((state) => ({ ...state, loading: false, success: true, data: cachedRes.slice(from, to), error: false }));
 			}
     } catch (err: Error | unknown) {
+			//eslint-disable-next-line no-console
       console.error("Error in data fetch:", err);
 			let msg: string;
 			if (err instanceof Error) msg = err.message

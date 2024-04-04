@@ -197,8 +197,8 @@ export const TagTableWrapper = () => {
 	const errorMsg = useTagData((state) => state.errorMessage)
 
 	useEffect(() => {
-		data === null && execute()
-	}, [])
+		(data === null && !error) && execute()
+	}, [data, execute, error])
 
 	return <TagTable data={data} loading={loading} error={error} errorMsg={errorMsg}/>
 }
