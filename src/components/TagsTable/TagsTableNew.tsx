@@ -4,13 +4,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { mockTagData } from "./mockData"
 
 import IconButton from '@mui/material/IconButton';
 import Groups from '@mui/icons-material/Groups';
@@ -19,11 +15,8 @@ import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
 import { useModalManager } from '../../hooks/useModalManager';
 import { CollectiveModal } from '../CollectiveModal/CollectiveModal';
 import { InfoModal } from '../InfoModal/InfoModal';
-import { TableFooter } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { visuallyHidden } from '@mui/utils'
-import { Primary, Secondary } from '../../stories/Button.stories';
-import { useTagData, useTagFilter } from '../../hooks';
+import { useEffect } from 'react';
+import { useTagData } from '../../hooks';
 import { IData } from '../../hooks/types';
 import { ITagData } from '../../hooks/types';
 

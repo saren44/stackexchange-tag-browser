@@ -1,9 +1,9 @@
 import TextField from '@mui/material/TextField'
-import { useTagData, useTagFilter } from '../../hooks'
+import { useTagData } from '../../hooks'
 import Search from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton'
 import { Box } from '@mui/material';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 
 

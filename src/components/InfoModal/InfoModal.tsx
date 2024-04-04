@@ -1,8 +1,9 @@
-import Modal, { ModalProps } from '@mui/material/Modal'
+import Modal from '@mui/material/Modal'
 import { useModalManager } from '../../hooks/useModalManager'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { ITagData } from '../../hooks/types';
+
 
 
 
@@ -19,11 +20,13 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: '60%',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '2px solid',
+	borderColor: 'primary.main',
   boxShadow: 24,
   p: 4,
 	maxHeight: '60%',
 	overflowY: 'auto',
+	color: "primary.main",
 };
 
 

@@ -1,6 +1,7 @@
-import Modal, { ModalProps } from '@mui/material/Modal'
+import Modal from '@mui/material/Modal'
 import { useModalManager } from '../../hooks/useModalManager'
-import { Link, Typography } from '@mui/material'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 import { ICollective } from '../../hooks/types'
 import Box from '@mui/material/Box'
 
@@ -26,6 +27,7 @@ const style = {
   p: 4,
 	maxHeight: '60%',
 	overflowY: 'auto',
+	color: 'primary.main'
 };
 
 const CollectiveRundown = ({ data }: ICollectiveRundownProps) => {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { CollectiveModal } from '../../components/CollectiveModal/CollectiveModal';
+import { themeWrap } from '../themeWrapper';
 
 const mockCollective = 	[
 	{
@@ -37,9 +37,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
-	args: {
-		collectiveData: mockCollective
-	}
+export const Light: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, true)
+	],
+  args: {
+		collectiveData: mockCollective,
+  },
+};
+
+export const Dark: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, false)
+	],
+  args: {
+		collectiveData: mockCollective,
+  },
 };
 

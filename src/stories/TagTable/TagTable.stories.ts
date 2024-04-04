@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { TagTable } from '../../components/TagsTable/TagsTableNew';
 import { mockTagData } from '../../components/TagsTable/mockData';
+import { themeWrap } from '../themeWrapper';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 
 
@@ -22,7 +22,28 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Light: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, true)
+	],
+	parameters: {
+		backgrounds: {default: 'light'}
+	},
+  args: {
+		data: mockTagData,
+		loading: false,
+		error: false,
+		errorMsg: 'mock error'
+  },
+};
+
+export const Dark: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, false)
+	],
+	parameters: {
+		backgrounds: {default: 'dark'}
+	},
   args: {
 		data: mockTagData,
 		loading: false,

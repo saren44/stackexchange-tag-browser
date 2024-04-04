@@ -2,8 +2,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import ArrowForward from '@mui/icons-material/ArrowForward'
 import ArrowBack from '@mui/icons-material/ArrowBack'
-import { IconButton, Typography } from '@mui/material'
-import { useState } from 'react'
+import IconButton from '@mui/material/IconButton'
 import { useTagData } from '../../hooks'
 
 interface IPaginatioControllerProps {

@@ -1,47 +1,16 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { ThemeSwitch } from './components/ThemeSwitch'
-import { TagTable, TagTableWrapper } from './components/TagsTable/TagsTableNew'
+import { TagTableWrapper } from './components/TagsTable/TagsTableNew'
 import { useModalManager } from './hooks/useModalManager'
-import { FilterInput } from './components/FilterInput/FilterInput'
-import { CssBaseline, ThemeProvider, Typography, createTheme } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useThemeSwitch } from './hooks'
 import { Header } from './components/Header/Header'
 import { PageWrapper } from './components/PageWrapper/PageWrapper'
 import { MobileWrapper } from './components/MobileWrapper/MobileWrapper'
 import { PaginationButtons } from './components/PaginationController/PaginationController'
+import { themeDark, themeLight } from './utils/themes'
 
-const themeLight = createTheme({
-  palette: {
-		mode: 'light',
-    background: {
-      default: "#d4d4d4"
-    },
-    primary: {
-			main: '#222222'
-		},
-		secondary: {
-			main: '#00ff00'
-		}
-  }
-});
-
-const themeDark = createTheme({
-  palette: {
-		mode: 'dark',
-    background: {
-      default: "#222222"
-    },
-    primary: {
-			main: '#d4d4d4'
-		},
-		secondary: {
-			main: '#ffff00'
-		}
-  }
-});
 
 function App() {
 

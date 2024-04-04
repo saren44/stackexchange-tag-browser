@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { FilterInput } from '../../components/FilterInput/FilterInput';
+import { themeWrap } from '../themeWrapper';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -20,7 +20,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Light: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, true)
+	],
+  args: {
+		top: true,
+  },
+};
+
+export const Dark: Story = {
+	decorators: [
+		(Story) => themeWrap(Story, false)
+	],
   args: {
 		top: true,
   },
