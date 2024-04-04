@@ -4,6 +4,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward'
 import ArrowBack from '@mui/icons-material/ArrowBack'
 import IconButton from '@mui/material/IconButton'
 import { useTagData } from '../../hooks'
+import { Typography } from '@mui/material'
 
 interface IPaginatioControllerProps {
 	top: boolean
@@ -15,11 +16,11 @@ export const PaginationButtons = () => {
 	const decreasePage = useTagData((state) => state.decreasePage)
 
 	return (
-		<Box>
+		<Box display={'flex'} flexDirection={'row'} alignItems={'center'}>
 			<IconButton onClick={decreasePage} disabled={currentPage === 0}>
 				<ArrowBack />
 			</IconButton>
-			<span> {currentPage} </span>
+			<Typography color='primary'> {currentPage} </Typography>
 			<IconButton onClick={increasePage}>
 				<ArrowForward />
 			</IconButton>

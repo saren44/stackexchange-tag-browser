@@ -32,6 +32,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
+	parameters: {
+		backgrounds: {default: 'light'}
+	},
 	decorators: [
 		(Story) => themeWrap(Story, true)
 	],
@@ -41,6 +44,9 @@ export const Light: Story = {
 };
 
 export const Dark: Story = {
+	parameters: {
+		backgrounds: {default: 'dark'}
+	},
 	decorators: [
 		(Story) => themeWrap(Story, false)
 	],

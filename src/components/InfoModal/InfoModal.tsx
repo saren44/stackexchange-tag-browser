@@ -3,7 +3,8 @@ import { useModalManager } from '../../hooks/useModalManager'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { ITagData } from '../../hooks/types';
-
+import { IconButton } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 
 
@@ -43,6 +44,15 @@ export const InfoModal = ({
 			onClose={onClose}
 		>
         <Box sx={style}>
+				<Box 
+					position={'absolute'}
+					top={'20px'}
+					right={'20px'}
+				>
+					<IconButton onClick={onClose}>
+						<Close />
+					</IconButton>
+				</Box>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {`${infoData.name} details`}
           </Typography>

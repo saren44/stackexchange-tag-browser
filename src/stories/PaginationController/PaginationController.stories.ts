@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { PaginationController } from '../../components/PaginationController/PaginationController';
+import { themeWrap } from '../themeWrapper';
 
 const meta = {
   title: 'Example/Pagination Controller',
@@ -12,9 +13,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-	args: {
+export const Light: Story = {
+	parameters: {
+		backgrounds: {default: 'light'}
+	},
+	decorators: [
+		(Story) => themeWrap(Story, true)
+	],
+  args: {
 		top: true,
-	}
+  },
+};
+
+export const Dark: Story = {
+	parameters: {
+		backgrounds: {default: 'dark'}
+	},
+	decorators: [
+		(Story) => themeWrap(Story, false)
+	],
+  args: {
+		top: true,
+  },
 };
 
