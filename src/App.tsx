@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { ThemeSwitch } from './components/ThemeSwitch'
-import { TagTable } from './components/TagsTable/TagsTableNew'
+import { TagTable, TagTableWrapper } from './components/TagsTable/TagsTableNew'
 import { useModalManager } from './hooks/useModalManager'
 import { FilterInput } from './components/FilterInput/FilterInput'
 import { CssBaseline, ThemeProvider, Typography, createTheme } from '@mui/material'
@@ -82,7 +82,7 @@ function App() {
 				</div>
 				<Header mobile/>
 				<div style={{width: '100vw', overflowX: 'hidden', overflowY: 'hidden'}}>
-					<TagTable />
+					<TagTableWrapper />
 				</div>
 				<PaginationButtons />
 			</MobileWrapper>
@@ -93,7 +93,7 @@ function App() {
 				<PageWrapper>
 					<Header mobile={false}/>
 					<div style={{width: '70%', minWidth: 768}}>
-						<TagTable />
+						<TagTableWrapper />
 					</div>
 				</PageWrapper>	
 

@@ -136,19 +136,23 @@ const TagTableRow = ({
 	)
 }
 
+interface ITagTableProps {
+	loading: boolean;
+	error: boolean;
+	data: IData[] | null;	
+	errorMsg: string | null;
+}
 
 
 
-export const TagTable = () => {
+export const TagTable = ({
+	loading,
+	error,
+	data,
+	errorMsg,
+}: ITagTableProps) => {
 
-	const data = useTagData((state) => state.data)
-	const loading = useTagData((state) => state.loading)
-	const error = useTagData((state) => state.error)
-	const execute = useTagData((state) => state.execute)
 
-	useEffect(() => {
-		data === null && execute()
-	}, [])
 
 	if (loading) {
 		return <>
@@ -162,6 +166,9 @@ export const TagTable = () => {
 			<>
 				<Typography color={'red'}>
 					Error!
+				</Typography>
+				<Typography color={'red'}>
+					{errorMsg}
 				</Typography>
 			</>
 
@@ -201,3 +208,16 @@ export const TagTable = () => {
 	)
 }
 
+export const TagTableWrapper = () => {
+	const data = useTagData((state) => state.data)
+	const loading = useTagData((state) => state.loading)
+	const error = useTagData((state) => state.error)
+	const execute = useTagData((state) => state.execute)
+	const errorMsg = useTagData((state) => state.errorMessage)
+
+	useEffect(() => {
+		data === null && execute()
+	}, [])
+
+	return <TagTable data={data} loading={loading} error={error} errorMsg={errorMsg}/>
+}

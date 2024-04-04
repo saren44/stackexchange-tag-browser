@@ -1,4 +1,4 @@
-import { IData } from "./TagsTableNew";
+import { IData } from "../../hooks/types"
 
 export const mockTagData: Array<IData> = [
 	{
