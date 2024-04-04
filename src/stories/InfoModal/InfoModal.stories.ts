@@ -19,7 +19,7 @@ const mockTagInfo = 	{
 }
 
 const meta = {
-  title: 'Example/Info Modal',
+  title: 'TagOverflow/Info Modal',
   component: InfoModal,
   parameters: {
     layout: 'centered',

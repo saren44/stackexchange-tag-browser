@@ -6,7 +6,7 @@ import { themeWrap } from '../themeWrapper';
 
 
 const meta = {
-  title: 'Example/Tag Table',
+  title: 'TagOverflow/Tag Table',
   component: TagTable,
   parameters: {
     layout: 'padded',

@@ -21,7 +21,7 @@ const mockCollective = 	[
 ]
 
 const meta = {
-  title: 'Example/Collective Modal',
+  title: 'TagOverflow/Collective Modal',
   component: CollectiveModal,
   parameters: {
     layout: 'centered',

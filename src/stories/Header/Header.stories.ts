@@ -3,7 +3,7 @@ import { Header } from '../../components/Header';
 import { themeWrap } from '../themeWrapper';
 
 const meta = {
-  title: 'Example/Header',
+  title: 'TagOverflow/Header',
   component: Header,
   parameters: {
     layout: 'padded',
@@ -33,7 +33,7 @@ export const Dark: Story = {
 		(Story) => themeWrap(Story, false)
 	],
   args: {
-		mobile: true,
+		mobile: false,
   },
 };
 

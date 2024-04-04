@@ -3,7 +3,7 @@ import { FilterInput } from '../../components/FilterInput';
 import { themeWrap } from '../themeWrapper';
 
 const meta = {
-  title: 'Example/Filter',
+  title: 'TagOverflow/Filter',
   component: FilterInput,
   parameters: {
     layout: 'centered',

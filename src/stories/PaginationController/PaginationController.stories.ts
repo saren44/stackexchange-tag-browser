@@ -3,7 +3,7 @@ import { PaginationController } from '../../components/PaginationController';
 import { themeWrap } from '../themeWrapper';
 
 const meta = {
-  title: 'Example/Pagination Controller',
+  title: 'TagOverflow/Pagination Controller',
   component: PaginationController,
   parameters: {
     layout: 'centered',
